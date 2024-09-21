@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+import { NavigationPages } from '../common/navigationPages';
 @Component({
     selector: 'login',
     templateUrl: 'login.component.html',
@@ -7,7 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit() { }
+    public formGroup!: FormGroup;
+    public authError: boolean = false;
+    public error: string = '';
+
+    constructor(
+        private authService: AuthenticationService,
+        private router: Router,
+    ) { }
+
+    ngOnInit(): void {
+        this.createForm();
+    }
+
+    public createForm() {
+        this.formGroup = new FormGroup({
+            username: new FormControl('', Validators.compose([Validators.required])),
+            pass: new FormControl('', Validators.compose([Validators.required, Validators.minLength(7)]))
+        })
+    }
+
+    public login() {
+        this.authService.logIn(this.formGroup.controls['username'].value, this.formGroup.controls['pass'].value).subscribe(foundUser => {
+            if (foundUser) {
+                this.router.navigateByUrl(NavigationPages.HOME);
+                this.authError = false;
+            } else {
+                this.error = "Alguno de los datos ingresados es incorrecto."
+                this.authError = true;
+            }
+        })
+    }
+
+    checkButton() {
+        return this.formGroup.valid
+    }
 }

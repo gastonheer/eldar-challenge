@@ -1,3 +1,68 @@
 @import "primeng/resources/themes/saga-blue/theme.css";
 @import "primeng/resources/primeng.min.css";
 @import "primeicons/primeicons.css";
+
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgb(77 75 111) 0%, rgba(20, 75, 181, 1) 100%);
+
+    input {
+        width: 100%;
+        border: 0
+    }
+
+    p-password div {
+        width: 100%;
+    }
+
+    p-inputgroup {
+        margin: 2% 0;
+    }
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.horizontal-align {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    width: 70%;
+    justify-content: center;
+    display: flex;
+    margin: 10% auto;
+    padding: 2%;
+    border-radius: 10px;
+    background: rgb(231, 231, 231);
+
+    .title {
+        font-size: 25px;
+        font-weight: 500;
+    }
+}
+
+.home-greeting-card {
+    p {
+        margin: auto;
+    }
+    height: 100px;
+    padding-left: 2%;
+    border-radius: 10px;
+    background: rgb(231, 231, 231);
+    font-size: 30px;
+    i {
+        cursor: pointer;
+    }
+}
+
+.home-body-card {
+    margin-top: 1%;
+    border-radius: 10px;
+    background: rgb(231, 231, 231);
+
+
+}

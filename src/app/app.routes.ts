@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { NavigationPages } from './features/common/navigationPages';
 import { LoginComponent } from './features/login/login.component';
+import { HomeComponent } from './features/home/home.component';
+import { HomeGuard } from './features/app.routing-guard';
 
 export const routes: Routes = [
     {
@@ -12,5 +14,11 @@ export const routes: Routes = [
         path: NavigationPages.LOGIN,
         component: LoginComponent,
         pathMatch: 'full',
-    }
+    },
+    {
+        path: NavigationPages.HOME,
+        component: HomeComponent,
+        pathMatch: 'full',
+        canActivate: [HomeGuard]
+    },
 ];

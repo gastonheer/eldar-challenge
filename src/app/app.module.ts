@@ -9,13 +9,22 @@ import { routes } from './app.routes';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { PasswordModule } from 'primeng/password';
 import { LoginComponent } from './features/login/login.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Error1Module } from "./features/common/error-component-1/error-1.module";
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { HomeComponent } from './features/home/home.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SpeedDialModule } from 'primeng/speeddial';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -23,7 +32,15 @@ import { LoginComponent } from './features/login/login.component';
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
         ButtonModule,
-        CardModule
+        CardModule, 
+        SpeedDialModule,
+        PasswordModule,
+        InputGroupModule,
+        ConfirmDialogModule,
+        SplitButtonModule,
+        InputGroupAddonModule,
+        ReactiveFormsModule,
+        Error1Module
     ],
     providers: [],
     bootstrap: [AppComponent],

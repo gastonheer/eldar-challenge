@@ -1,0 +1,15 @@
+.home-div {
+    margin: 10% auto;
+    width: 70%;
+}
+
+.grid {
+    display: flex;
+}
+
+.col-6 {
+    flex: 1;
+    /* Esto hace que cada columna ocupe el 50% del ancho */
+    padding: 1rem;
+    /* Espaciado interno */
+}

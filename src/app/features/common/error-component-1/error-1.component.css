@@ -1,0 +1,18 @@
+.error {
+    margin: 4% 0;
+    border: solid 2px #d73d3d;
+    border-radius: 8px;
+    padding: 2%;
+    display: flex;
+    font-family: system-ui;
+    color: #d73d3d;
+    background-color: #ffe2e2;
+
+    i {
+        padding: 0 0 0 2%;
+    }
+
+    p {
+        margin: 0 0 0 10px;
+    }
+}
