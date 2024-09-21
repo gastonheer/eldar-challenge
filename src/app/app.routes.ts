@@ -1,3 +1,16 @@
 import { Routes } from '@angular/router';
+import { NavigationPages } from './features/common/navigationPages';
+import { LoginComponent } from './features/login/login.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: NavigationPages.LOGIN,
+        pathMatch: 'full',
+    },
+    {
+        path: NavigationPages.LOGIN,
+        component: LoginComponent,
+        pathMatch: 'full',
+    }
+];
