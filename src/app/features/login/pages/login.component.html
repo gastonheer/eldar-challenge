@@ -1,24 +1,28 @@
-<p-card styleClass="login-card">
-    <div class="horizontal-align">
-        <p class="title">Iniciar sesión</p>
-    </div>
-    <p>Ingrese su usuario y contraseña</p>
-    <form [formGroup]="formGroup" (ngSubmit)="login()">
-        <p-inputGroup>
-            <p-inputGroupAddon>
-                <i class="pi pi-user"></i>
-            </p-inputGroupAddon>
-            <input formControlName="username" pInputText placeholder="Usuario" style="padding: 10px; font-family: system-ui; font-size: 16px;"/>
-        </p-inputGroup>
-        <p-inputGroup>
-            <p-inputGroupAddon>
-                <i class="pi pi-asterisk"></i>
-            </p-inputGroupAddon>
-            <p-password formControlName="pass" [feedback]="false" placeholder="Contraseña" [toggleMask]="true" />
-        </p-inputGroup>
-        <error-1 [error]="error" *ngIf="authError"></error-1>
-        <div class="horizontal-align" style="padding: 6% 0 0;">
-            <button pButton type="submit" label="Iniciar sesión" [disabled]="!formGroup.valid"></button>
+<div class="main-div">
+    <p-card styleClass="login-card">
+        <div class="horizontal-align">
+            <p class="title">Iniciar sesión</p>
         </div>
-    </form>
-</p-card>
+        <div class="horizontal-align">
+            <p>Ingrese su usuario y contraseña</p>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="login()">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <input formControlName="username" pInputText placeholder="Usuario" style="padding: 10px; font-family: system-ui; font-size: 16px;"/>
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-asterisk"></i>
+                </p-inputGroupAddon>
+                <p-password formControlName="pass" [feedback]="false" placeholder="Contraseña" [toggleMask]="true" />
+            </p-inputGroup>
+            <error-1 [error]="error" *ngIf="authError"></error-1>
+            <div class="horizontal-align" style="padding: 6% 0 0;">
+                <button pButton type="submit" label="Iniciar sesión" [disabled]="!formGroup.valid"></button>
+            </div>
+        </form>
+    </p-card>
+</div>

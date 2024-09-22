@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit {
     public items: any[] = []
     public optionMenu: boolean = false;
     public list: any[] = [];
+    public _list!: any[];
+    public isAdmin!: boolean;
+    public showModal: boolean = false;
+    public modalData: any;
 
     constructor(
         private router: Router,
@@ -36,11 +40,13 @@ export class HomeComponent implements OnInit {
     public getCurrentUser() {
         const user = localStorage.getItem('loggedUser');
         this.currentUser = user ? JSON.parse(user) : null;
+        this.isAdmin = this.currentUser.role === 'admin';
     }
 
     public getData() {
         this.dataService.getPosts().subscribe(data => {
             this.list = data;
+            this._list = this.list.slice(0, 5);
         })
     }
 
@@ -48,13 +54,39 @@ export class HomeComponent implements OnInit {
         this.optionMenu = !this.optionMenu;
     }
 
-    clickOption(item: { action: any; }): void {
+    public clickOption(item: { action: any; }): void {
         switch (item.action) {
             case 'logout':
                 localStorage.removeItem('loggedUser');
                 this.router.navigateByUrl(NavigationPages.LOGIN);
                 break;
-
         }
     }
+
+    public onPageChange(event?: any) {
+        this._list = this.list.slice(event.page * 5, event.page * 5 + 5);
+    }
+
+    public edit(product: any) {
+        this.modalData = {
+            header: 'Editar',
+            title: '',
+            product: product
+        }
+        this.showModal = true;
+    }
+
+    public add() {
+        this.modalData = {
+            header: 'Agregar nuevo',
+            title: '',
+            type: 'add'
+        }
+        this.showModal = true;
+    }
+
+    public closeModal(event: any) {
+        this.showModal = event;
+    }
+
 }

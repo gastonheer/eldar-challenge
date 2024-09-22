@@ -19,12 +19,17 @@ import { HomeComponent } from './features/home/pages/home.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SpeedDialModule } from 'primeng/speeddial';
+import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { EditDataModalComponent } from './features/home/components/edit-data-modal.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         HomeComponent,
+        EditDataModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -39,6 +44,9 @@ import { SpeedDialModule } from 'primeng/speeddial';
         ConfirmDialogModule,
         SplitButtonModule,
         InputGroupAddonModule,
+        PaginatorModule,
+        DialogModule,
+        TableModule,
         ReactiveFormsModule,
         Error1Module
     ],

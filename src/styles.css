@@ -30,11 +30,14 @@ body {
     justify-content: center;
 }
 
-.login-card {
+.main-div {
+    margin: 10% auto;
     width: 70%;
+}
+
+.login-card {
     justify-content: center;
     display: flex;
-    margin: 10% auto;
     padding: 2%;
     border-radius: 10px;
     background: rgb(231, 231, 231);
@@ -49,11 +52,13 @@ body {
     p {
         margin: auto;
     }
+
     height: 100px;
     padding-left: 2%;
     border-radius: 10px;
     background: rgb(231, 231, 231);
     font-size: 30px;
+
     i {
         cursor: pointer;
     }
@@ -63,6 +68,24 @@ body {
     margin-top: 1%;
     border-radius: 10px;
     background: rgb(231, 231, 231);
+}
 
+.cursor-pointer {
+    cursor: pointer;
+}
 
+.p-dialog .p-dialog-header-icons {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .main-div {
+        width: 90%;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+    .main-div {
+        width: 80%;
+    }
 }
