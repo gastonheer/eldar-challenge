@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthenticationService } from '../auth/auth.service';
+import { AuthenticationService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
-import { NavigationPages } from '../common/navigationPages';
+import { NavigationPages } from '../../common/navigationPages';
 @Component({
     selector: 'login',
     templateUrl: 'login.component.html',
@@ -34,16 +34,13 @@ export class LoginComponent implements OnInit {
     public login() {
         this.authService.logIn(this.formGroup.controls['username'].value, this.formGroup.controls['pass'].value).subscribe(foundUser => {
             if (foundUser) {
-                this.router.navigateByUrl(NavigationPages.HOME);
                 this.authError = false;
+                this.router.navigateByUrl(NavigationPages.HOME);
             } else {
-                this.error = "Alguno de los datos ingresados es incorrecto."
                 this.authError = true;
+                this.error = "Alguno de los datos ingresados es incorrecto."
             }
         })
     }
 
-    checkButton() {
-        return this.formGroup.valid
-    }
 }
