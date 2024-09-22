@@ -19,6 +19,13 @@ export class AuthenticationService {
             role: 'user'
         }
     ];
+    private userActions = [
+        {
+            icon: 'pi pi-power-off',
+            label: 'Cerrar sesión',
+            action: 'logout'
+        },
+    ]
 
     constructor(private http: HttpClient) { }
 
@@ -34,4 +41,9 @@ export class AuthenticationService {
         const user = localStorage.getItem('loggedUser');
         return user ? JSON.parse(user) : null;
     }
+
+    getUserActions() {
+        return this.userActions;
+    }
+
 }

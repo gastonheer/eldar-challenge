@@ -8,7 +8,7 @@ body {
 
     input {
         width: 100%;
-        border: 0
+        /* border: 0 */
     }
 
     p-password div {
@@ -46,6 +46,11 @@ body {
         font-size: 25px;
         font-weight: 500;
     }
+
+    input {
+        width: 100%;
+        border: 0
+    }
 }
 
 .home-greeting-card {
@@ -82,10 +87,12 @@ body {
     .main-div {
         width: 90%;
     }
+
 }
 
 @media (min-width: 500px) and (max-width: 800px) {
     .main-div {
         width: 80%;
     }
+
 }

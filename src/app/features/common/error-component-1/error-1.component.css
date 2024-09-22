@@ -7,6 +7,9 @@
     font-family: system-ui;
     color: #d73d3d;
     background-color: #ffe2e2;
+    /* max-width: 80%;
+    display: flex;
+    margin: auto; */
 
     i {
         padding: 0 0 0 2%;

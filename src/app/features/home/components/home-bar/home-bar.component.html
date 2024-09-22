@@ -1,0 +1,14 @@
+<div class="grid home-greeting-card vertical-align">
+    <div class="col-6">
+        <p>Hola, {{currentUser.username}}</p>
+    </div>
+    <div class="col-6" style="justify-content: end; display: flex; margin-right: 20px;">
+        <button icon="pi pi-ellipsis-h" pButton (click)="seeOptions()"></button>
+        <div *ngIf="optionMenu" class="option-menu">
+            <ul *ngFor="let option of userActions" class="cursor-pointer" (click)="clickOption(option)">
+                <i class="pi {{option.icon}}" style="margin-right: 10px;"></i>
+                {{option.label}}
+            </ul>
+        </div>
+    </div>
+</div>

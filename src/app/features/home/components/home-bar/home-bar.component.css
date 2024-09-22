@@ -1,0 +1,36 @@
+.grid {
+    display: flex;
+}
+
+.col-6 {
+    flex: 1;
+    /* padding: 1rem; */
+
+    button {
+        border-radius: 20px;
+        background-color: rgb(21, 91, 221);
+        height: 38px;
+        border: 0;
+    }
+
+    .option-menu {
+        width: auto;
+        margin-top: 45px;
+        position: absolute;
+        background-color: white;
+        padding: 10px 12px;
+        border-radius: 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+    }
+
+    .option-menu:hover {
+        background-color: rgb(207, 207, 207);
+        transition: 0.3s;
+    }
+}

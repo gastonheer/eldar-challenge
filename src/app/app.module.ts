@@ -22,14 +22,19 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { EditDataModalComponent } from './features/home/components/edit-data-modal.component';
-
+import { EditDataModalComponent } from './features/home/components/edit-data-modal/edit-data-modal.component';
+import { DataTableComponent } from './features/home/components/data-table/data-table.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
+import { HomeBarComponent } from './features/home/components/home-bar/home-bar.component';
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         HomeComponent,
         EditDataModalComponent,
+        DataTableComponent,
+        HomeBarComponent,
     ],
     imports: [
         BrowserModule,
@@ -37,6 +42,8 @@ import { EditDataModalComponent } from './features/home/components/edit-data-mod
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
         ButtonModule,
+        ProgressSpinnerModule,
+        SkeletonModule,
         CardModule, 
         SpeedDialModule,
         PasswordModule,
