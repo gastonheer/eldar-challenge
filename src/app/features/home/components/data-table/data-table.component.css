@@ -2,8 +2,26 @@
     display: flex;
 }
 
-.col-6 {
+.col-6-left {
     flex: 1;
+
+    p {
+        margin: 0;
+        font-size: 20px;
+        color: black;
+    }
+
+    button {
+        background-color: #23337b;
+    }
+}
+
+.col-6-right {
+    flex: 1;
+    justify-content: end;
+    display: flex;
+    padding: 0 0 2% 0;
+
     button {
         background-color: #23337b;
     }

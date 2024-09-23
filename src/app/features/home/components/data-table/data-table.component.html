@@ -1,47 +1,52 @@
 <p-card styleClass="home-body-card">
     <div class="grid">
-        <div class="col-6">
-            <p style="margin: 0; font-size: 20px; color: black;">
-                Registros
-            </p>
+        <div class="col-6-left">
+            <p>Registros</p>
         </div>
-        <div class="col-6" style="justify-content: end; display: flex; padding: 0 0 2% 0;">
+        <div class="col-6-right">
             <p-button label="Agregar nuevo" (onClick)="add()" />
         </div>
     </div>
-    <p-table [value]="_list" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Descripción</th>
-                <th>Resumen</th>
-                <ng-container *ngIf="isAdmin">
-                    <th>Editar</th>
-                </ng-container>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <ng-container *ngIf="!loading; else Skeleton">
+    <!-- <ng-container *ngIf="list?.length && !loading; else NoData"> -->
+        <p-table [value]="_list" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
                 <tr>
-                    <td>{{ product.body }}</td>
-                    <td>{{ product.title }}</td>
-                    <ng-container *ngIf="isAdmin">
-                        <td><i class="pi pi-pencil vertical-align horizontal-align cursor-pointer"
-                                style="margin-right: 10px;" (click)="edit(product)"></i></td>
-                    </ng-container>
-                </tr>
-            </ng-container>
-            <ng-template #Skeleton>
-                <tr>
-                    <td><p-skeleton /></td>
-                    <td><p-skeleton /></td>
-                    <ng-container *ngIf="isAdmin">
-                        <td><p-skeleton /></td>
+                    <th>Descripción</th>
+                    <th>Resumen</th>
+                    <ng-container *ngIf="currentUser?.isAdmin">
+                        <th>Editar</th>
                     </ng-container>
                 </tr>
             </ng-template>
-        </ng-template>
-    </p-table>
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="1" [rows]="3" [totalRecords]="list?.length" />
+            <ng-template pTemplate="body" let-product>
+                <ng-container *ngIf="loading; else DataTable">
+                    <tr>
+                        <td><p-skeleton /></td>
+                        <td><p-skeleton /></td>
+                        <ng-container *ngIf="currentUser?.isAdmin">
+                            <td><p-skeleton /></td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+                <ng-template #DataTable>
+                    <tr>
+                        <td>{{ product.body }}</td>
+                        <td>{{ product.title }}</td>
+                        <ng-container *ngIf="currentUser?.isAdmin">
+                            <td><i class="pi pi-pencil vertical-align horizontal-align cursor-pointer"
+                                    style="margin-right: 10px;" (click)="edit(product)"></i></td>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+            </ng-template>
+        </p-table>
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="1" [rows]="3" [totalRecords]="list?.length" />
+   <!--  </ng-container> -->
+    <!-- <ng-template #NoData>
+        <ng-container *ngIf="!loading && error">
+            <error-1 [error]="error"></error-1>
+        </ng-container>
+    </ng-template> -->
 </p-card>
 <ng-container *ngIf="showModal">
     <edit-data-modal (closeModal)="closeModal($event)" [modalData]="modalData" [visible]="showModal"></edit-data-modal>

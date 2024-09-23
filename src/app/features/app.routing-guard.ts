@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
-import { AuthenticationService } from "./auth/auth.service";
+import { CanActivate, Router, UrlTree } from "@angular/router";
 import { NavigationPages } from "./common/navigationPages";
+import { select, Store } from "@ngrx/store";
+import { AuthReducers, AuthSelectors } from "./auth/ngrx/auth.index";
+import { map, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -9,15 +11,22 @@ import { NavigationPages } from "./common/navigationPages";
 export class HomeGuard implements CanActivate {
     constructor(
         private router: Router,
-        private authService: AuthenticationService,
+        private store: Store<AuthReducers.AuthState>
     ) { }
 
-    canActivate(): boolean {
-        const isAuthenticated = !!this.authService.getCurrentUser();
-        if (!isAuthenticated) {
-            this.router.navigate([NavigationPages.LOGIN]);
-            return false;
-        }
-        return true;
+    canActivate():
+        | Observable<boolean | UrlTree>
+        | boolean {
+        return this.store.pipe(
+            select(AuthSelectors.selectFeature),
+            map((state) => {
+                if (state.user) return true;
+                else {
+                    this.router.navigate([NavigationPages.LOGIN]);
+                    return false
+                }
+
+            })
+        )
     }
 }

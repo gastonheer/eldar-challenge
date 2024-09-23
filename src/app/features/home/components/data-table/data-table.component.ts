@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserModel } from '../../../common/models/userModel';
-import { DataService } from '../../../common/data.service';
+import { Store } from '@ngrx/store';
+import { DataActions, DataReducers, DataSelectors } from '../../ngrx/data.index';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'data-table',
@@ -10,32 +12,40 @@ import { DataService } from '../../../common/data.service';
 
 export class DataTableComponent implements OnInit {
 
-    @Input() currentUser!: UserModel;
+    @Input() currentUser!: UserModel | null;
     public list!: any[];
     public _list!: any[];
     public modalData: any;
     public showModal: boolean = false;
-    public loading: boolean = false;
-    public isAdmin!: boolean;
+    public loading: boolean = true;
+    public error!: string;
+
+    public subscriptions: Subscription[] = [];
 
     constructor(
-        private dataService: DataService,
+        private dataStore: Store<DataReducers.DataState>
     ) { }
 
     ngOnInit(): void {
-        this.getData();
-        this.isAdmin = this.currentUser.role == 'admin';
+        this.dataStore.dispatch(DataActions.getData());
+        this.dataSubscription();
     }
 
-    public getData() {
-        this.loading = true;
-        this.dataService.getPosts().subscribe(data => {
-            this.list = data;
-            this._list = this.list.slice(0, 3);
+    public dataSubscription() {
+        const subscription = this.dataStore.select(DataSelectors.selectFeature).subscribe(state => {
+            this.loading = state.loading;
+            if (state.error) {   
+                this.error = 'Se produjo un error obteniendo el listado';
+            }
+            if (state.list) {
+                this.list = state.list;
+                this._list = this.list.slice(0, 3);
+            }
             setTimeout(() => {
-                this.loading = false;
+                this.loading = false; // Simulo tiempo de carga ya que el servicio no demora.
             }, 1000 * 0.3);
-        })
+        });
+        this.subscriptions.push(subscription);
     }
 
     public onPageChange(event?: any) {

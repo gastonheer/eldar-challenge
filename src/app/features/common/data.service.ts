@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,11 @@ export class DataService {
   ) { }
 
   getPosts(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(this.apiUrl).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
 
   createPost(postData: { title: string; body: string; userId: number }): Promise<any> {
@@ -26,8 +30,7 @@ export class DataService {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json())
   }
 
   updatePost(id: number, postData: { title: string; body: string; userId: number }): Promise<any> {

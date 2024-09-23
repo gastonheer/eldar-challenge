@@ -1,7 +1,6 @@
-export class UserModel {
-    username!: string;
-    pass!: string;
-    role!: string;
-    isAdmin!: boolean;
-    permissions!: string[];
+export interface UserModel {
+    username: string;
+    role: string;
+    isAdmin: boolean;
+    permissions: string[];
 }

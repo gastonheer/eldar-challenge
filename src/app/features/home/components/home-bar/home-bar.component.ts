@@ -3,6 +3,8 @@ import { UserModel } from '../../../common/models/userModel';
 import { Router } from '@angular/router';
 import { NavigationPages } from '../../../common/navigationPages';
 import { AuthenticationService } from '../../../auth/auth.service';
+import { Store } from '@ngrx/store';
+import { AuthActions, AuthReducers } from '../../../auth/ngrx/auth.index';
 
 @Component({
     selector: 'home-bar',
@@ -11,13 +13,14 @@ import { AuthenticationService } from '../../../auth/auth.service';
 })
 
 export class HomeBarComponent implements OnInit {
-    @Input() currentUser!: UserModel;
+    @Input() currentUser!: UserModel | null;
     public userActions!: any[];
     public optionMenu: boolean = false;
 
     constructor(
         private router: Router,
         private authService: AuthenticationService,
+        private store: Store<AuthReducers.AuthState>,
     ) { }
 
     ngOnInit() {
@@ -32,7 +35,8 @@ export class HomeBarComponent implements OnInit {
         switch (option.action) {
             case 'logout':
                 this.optionMenu = false;
-                this.authService.logOut();
+                //this.authService.logOut();
+                this.store.dispatch(AuthActions.logOut());
                 this.router.navigateByUrl(NavigationPages.LOGIN);
                 break;
         }

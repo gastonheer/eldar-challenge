@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../common/models/userModel';
-import { AuthenticationService } from '../../auth/auth.service';
+import { Store } from '@ngrx/store';
+import { AuthReducers, AuthSelectors } from '../../auth/ngrx/auth.index';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'home',
@@ -10,18 +12,23 @@ import { AuthenticationService } from '../../auth/auth.service';
 
 export class HomeComponent implements OnInit {
 
-    public currentUser!: UserModel;
+    public currentUser!: UserModel | null;
+    public subscriptions: Subscription[] = [];
+
 
     constructor(
-        private authService: AuthenticationService
+        private store: Store<AuthReducers.AuthState>,
     ) { }
 
     ngOnInit(): void {
-        this.getCurrentUser();
+        this.authSubscription();
     }
 
-    public getCurrentUser() {
-        this.currentUser = this.authService.getCurrentUser();
+    public authSubscription() {
+        const subscription = this.store.select(AuthSelectors.selectFeature).subscribe(state => {
+            this.currentUser = state.user;
+        });
+        this.subscriptions.push(subscription);
     }
 
 }
