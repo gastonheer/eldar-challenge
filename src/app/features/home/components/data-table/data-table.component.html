@@ -1,12 +1,21 @@
 <p-card styleClass="home-body-card">
+    <div class="grid">
+        <div class="col-6">
+            <p style="margin: 0; font-size: 20px; color: black;">
+                Registros
+            </p>
+        </div>
+        <div class="col-6" style="justify-content: end; display: flex; padding: 0 0 2% 0;">
+            <p-button label="Agregar nuevo" (onClick)="add()" />
+        </div>
+    </div>
     <p-table [value]="_list" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
                 <th>Descripción</th>
                 <th>Resumen</th>
                 <ng-container *ngIf="isAdmin">
-                    <th>Acciones</th>
-                    <th></th>
+                    <th>Editar</th>
                 </ng-container>
             </tr>
         </ng-template>
@@ -18,8 +27,6 @@
                     <ng-container *ngIf="isAdmin">
                         <td><i class="pi pi-pencil vertical-align horizontal-align cursor-pointer"
                                 style="margin-right: 10px;" (click)="edit(product)"></i></td>
-                        <td><i class="pi pi-plus-circle vertical-align horizontal-align cursor-pointer"
-                                style="margin-right: 10px;" (click)="add()"></i></td>
                     </ng-container>
                 </tr>
             </ng-container>
@@ -29,13 +36,12 @@
                     <td><p-skeleton /></td>
                     <ng-container *ngIf="isAdmin">
                         <td><p-skeleton /></td>
-                        <td><p-skeleton /></td>
                     </ng-container>
                 </tr>
             </ng-template>
         </ng-template>
     </p-table>
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="5" [rows]="10" [totalRecords]="list?.length" />
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="1" [rows]="3" [totalRecords]="list?.length" />
 </p-card>
 <ng-container *ngIf="showModal">
     <edit-data-modal (closeModal)="closeModal($event)" [modalData]="modalData" [visible]="showModal"></edit-data-modal>

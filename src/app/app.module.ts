@@ -27,6 +27,8 @@ import { DataTableComponent } from './features/home/components/data-table/data-t
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
 import { HomeBarComponent } from './features/home/components/home-bar/home-bar.component';
+import { ToastModule } from 'primeng/toast';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -44,7 +46,8 @@ import { HomeBarComponent } from './features/home/components/home-bar/home-bar.c
         ButtonModule,
         ProgressSpinnerModule,
         SkeletonModule,
-        CardModule, 
+        ToastModule,
+        CardModule,
         SpeedDialModule,
         PasswordModule,
         InputGroupModule,

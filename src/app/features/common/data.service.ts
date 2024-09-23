@@ -28,7 +28,6 @@ export class DataService {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
   }
 
   updatePost(id: number, postData: { title: string; body: string; userId: number }): Promise<any> {

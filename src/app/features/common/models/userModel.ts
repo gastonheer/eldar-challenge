@@ -3,4 +3,5 @@ export class UserModel {
     pass!: string;
     role!: string;
     isAdmin!: boolean;
+    permissions!: string[];
 }

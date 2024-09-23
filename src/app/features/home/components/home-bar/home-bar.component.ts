@@ -32,7 +32,7 @@ export class HomeBarComponent implements OnInit {
         switch (option.action) {
             case 'logout':
                 this.optionMenu = false;
-                localStorage.removeItem('loggedUser');
+                this.authService.logOut();
                 this.router.navigateByUrl(NavigationPages.LOGIN);
                 break;
         }

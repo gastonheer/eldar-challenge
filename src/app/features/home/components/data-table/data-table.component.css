@@ -1,0 +1,10 @@
+.grid {
+    display: flex;
+}
+
+.col-6 {
+    flex: 1;
+    button {
+        background-color: #23337b;
+    }
+}

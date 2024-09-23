@@ -4,6 +4,7 @@
 
 .col-6 {
     flex: 1;
+    user-select: none;
     /* padding: 1rem; */
 
     button {

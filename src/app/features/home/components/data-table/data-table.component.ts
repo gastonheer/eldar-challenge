@@ -31,19 +31,24 @@ export class DataTableComponent implements OnInit {
         this.loading = true;
         this.dataService.getPosts().subscribe(data => {
             this.list = data;
-            this._list = this.list.slice(0, 5);
-            this.loading = false;
+            this._list = this.list.slice(0, 3);
+            setTimeout(() => {
+                this.loading = false;
+            }, 1000 * 0.3);
         })
     }
 
     public onPageChange(event?: any) {
-        this._list = this.list.slice(event.page * 5, event.page * 5 + 5);
+        this.loading = true;
+        setTimeout(() => {
+            this._list = this.list.slice(event.page * 3, event.page * 3 + 3);
+            this.loading = false;
+        }, 1000 * 0.3);
     }
 
     public edit(product: any) {
         this.modalData = {
             header: 'Editar',
-            title: '',
             product: product
         }
         this.showModal = true;
@@ -51,9 +56,8 @@ export class DataTableComponent implements OnInit {
 
     public add() {
         this.modalData = {
-            header: 'Agregar nuevo',
-            title: '',
-            type: 'add'
+            header: 'Agregar registro',
+            type: 'add',
         }
         this.showModal = true;
     }

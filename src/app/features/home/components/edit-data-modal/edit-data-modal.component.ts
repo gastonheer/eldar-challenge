@@ -33,22 +33,28 @@ export class EditDataModalComponent implements OnInit {
     }
 
     public save() {
-        console.log(this.modalData);
-        let data = {
-            title: this.formGroup.controls['description'].value,
-            body: this.formGroup.controls['resumen'].value,
-            userId: this.modalData.product.userId
-        }
+        let data;
         if (this.modalData.type) {
+            data = {
+                title: this.formGroup.controls['description'].value,
+                body: this.formGroup.controls['resumen'].value,
+                userId: this.modalData.userId
+            }
             this.dataService.createPost(data);
         } else {
+            data = {
+                title: this.formGroup.controls['description'].value,
+                body: this.formGroup.controls['resumen'].value,
+                userId: this.modalData.product.userId
+            }
             this.dataService.updatePost(this.modalData.product.id, data);
         }
         this.cancel();
     }
-    
+
     public cancel() {
         this.visible = false;
         this.closeModal.emit(this.visible);
+
     }
 }
