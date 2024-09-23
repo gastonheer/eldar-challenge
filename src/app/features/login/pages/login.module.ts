@@ -19,6 +19,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SpeedDialModule } from 'primeng/speeddial';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { Error1Module } from "../../common/error-component-1/error-1.module";
+import { AutoFocusModule } from "primeng/autofocus";
 
 @NgModule({
     declarations: [
@@ -36,6 +38,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         PasswordModule,
         InputGroupModule,
         InputGroupAddonModule,
+        Error1Module,
+        AutoFocusModule
     ],
     providers: [
         AuthenticationService

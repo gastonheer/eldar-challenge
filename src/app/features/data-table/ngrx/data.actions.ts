@@ -1,5 +1,9 @@
 import { createAction, props } from "@ngrx/store";
 
+export const clearState = createAction(
+    '[Data Component] Clear State!'
+);
+
 export const getData = createAction(
     '[Data Component] Get Data!'
 );

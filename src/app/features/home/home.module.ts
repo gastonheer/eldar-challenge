@@ -3,8 +3,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { DataEffect } from "./ngrx/data.effects";
-import * as dataReducer from './ngrx/data.reducer'
+import { DataEffect } from "../data-table/ngrx/data.effects";
+import * as dataReducer from '../data-table/ngrx/data.reducer'
 import { CommonModule } from "@angular/common";
 
 // Prime NG modules
@@ -22,12 +22,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
 
-import { HomeComponent } from "./pages/home.component";
-import { DataService } from "../common/data.service";
-import { DataTableComponent } from "./components/data-table/data-table.component";
-import { HomeBarComponent } from "./components/home-bar/home-bar.component";
-import { EditDataModalComponent } from "./components/edit-data-modal/edit-data-modal.component";
+import { DataService } from "../data-table/data.service";
+
 import { Error1Module } from "../common/error-component-1/error-1.module";
+import { HomeComponent } from "./presentation/pages/home.component";
+import { HomeBarComponent } from "./presentation/components/home-bar/home-bar.component";
+import { EditDataModalComponent } from "../data-table/presentation/components/edit-data-modal/edit-data-modal.component";
+import { DataTableComponent } from "../data-table/presentation/components/data-table/data-table.component";
+import { MessageService } from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -60,7 +62,8 @@ import { Error1Module } from "../common/error-component-1/error-1.module";
     Error1Module
 ],
     providers: [
-        DataService
+        DataService,
+        MessageService,
     ],
     exports: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

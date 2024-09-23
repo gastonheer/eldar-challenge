@@ -14,8 +14,7 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
     public formGroup!: FormGroup;
-    public authError: boolean = false;
-    public error: string = '';
+    public error!: string;
     public subscriptions: Subscription[] = [];
 
     constructor(
@@ -23,8 +22,12 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.authStore.dispatch(AuthActions.clearState());
         this.createForm();
         this.authSuscription();
+        this.formGroup.valueChanges.subscribe(changes => {
+            if (changes) this.error = '';
+        })
     }
 
     public createForm() {
@@ -36,12 +39,15 @@ export class LoginComponent implements OnInit {
 
     public authSuscription() {
         const subscription = this.authStore.select(AuthSelectors.selectFeature).subscribe((state) => {
-            console.log(state)
+            if (state.error) {
+                this.error = state.error;
+            }
         });
         this.subscriptions.push(subscription);
     }
 
     public login() {
+        this.authStore.dispatch(AuthActions.clearState());
         this.authStore.dispatch(AuthActions.logIn({
             user: this.formGroup.controls['username'].value,
             pass: this.formGroup.controls['pass'].value

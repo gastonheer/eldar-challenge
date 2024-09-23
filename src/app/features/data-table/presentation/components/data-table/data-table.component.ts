@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserModel } from '../../../common/models/userModel';
+import { UserModel } from '../../../../common/models/userModel';
 import { Store } from '@ngrx/store';
-import { DataActions, DataReducers, DataSelectors } from '../../ngrx/data.index';
+import { DataActions, DataReducers, DataSelectors } from '../../../ngrx/data.index';
 import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'data-table',
@@ -23,7 +24,8 @@ export class DataTableComponent implements OnInit {
     public subscriptions: Subscription[] = [];
 
     constructor(
-        private dataStore: Store<DataReducers.DataState>
+        private dataStore: Store<DataReducers.DataState>,
+        private messageService: MessageService,
     ) { }
 
     ngOnInit(): void {
@@ -34,7 +36,7 @@ export class DataTableComponent implements OnInit {
     public dataSubscription() {
         const subscription = this.dataStore.select(DataSelectors.selectFeature).subscribe(state => {
             this.loading = state.loading;
-            if (state.error) {   
+            if (state.error) {
                 this.error = 'Se produjo un error obteniendo el listado';
             }
             if (state.list) {
@@ -42,7 +44,7 @@ export class DataTableComponent implements OnInit {
                 this._list = this.list.slice(0, 3);
             }
             setTimeout(() => {
-                this.loading = false; // Simulo tiempo de carga ya que el servicio no demora.
+                this.loading = false; // Simulo tiempo de carga
             }, 1000 * 0.3);
         });
         this.subscriptions.push(subscription);
@@ -75,4 +77,9 @@ export class DataTableComponent implements OnInit {
     public closeModal(event: any) {
         this.showModal = event;
     }
+
+    public showToast(props: any) {
+        this.messageService.add(props);
+    }
+
 }

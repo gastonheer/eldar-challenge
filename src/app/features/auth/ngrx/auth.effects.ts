@@ -17,16 +17,17 @@ export class AuthEffect {
     public logIn$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.logIn),
-            mergeMap(({ user, pass }) => {
-                return this.authService.logIn(user, pass).pipe(
+            mergeMap(({ user, pass }) =>
+                this.authService.logIn(user, pass).pipe(
                     map((user) => {
                         this.router.navigateByUrl(NavigationPages.HOME);
-                        return AuthActions.logInSuccess({ user: user });
+                        return AuthActions.logInSuccess({ user });
+                    }),
+                    catchError((error: any) => {
+                        return of(AuthActions.logInFailed({ error: error.message }));
                     })
                 )
-            }), catchError((error: any) => {
-                return of(AuthActions.logInFailed({ error: error }));
-            })
+            )
         )
-    )
+    );
 }

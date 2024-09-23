@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from '../../common/models/userModel';
+import { UserModel } from '../../../common/models/userModel';
 import { Store } from '@ngrx/store';
-import { AuthReducers, AuthSelectors } from '../../auth/ngrx/auth.index';
+import { AuthReducers, AuthSelectors } from '../../../auth/ngrx/auth.index';
 import { Subscription } from 'rxjs';
 
 @Component({

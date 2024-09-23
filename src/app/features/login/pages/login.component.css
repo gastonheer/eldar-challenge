@@ -1,3 +1,5 @@
 button {
     background-color: #23337b;
+    border: 0;
+    border-radius: 5px;
 }

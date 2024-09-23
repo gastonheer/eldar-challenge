@@ -1,6 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import * as fromAuth from '../../auth/ngrx/auth.reducer';
-import * as fromData from '../../home/ngrx/data.reducer';
+import * as fromData from '../../data-table/ngrx/data.reducer';
 
 export interface AppState {
   auth: fromAuth.AuthState;

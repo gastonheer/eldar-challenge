@@ -11,7 +11,7 @@
                 <p-inputGroupAddon>
                     <i class="pi pi-user"></i>
                 </p-inputGroupAddon>
-                <input formControlName="username" pInputText placeholder="Usuario" style="padding: 10px; font-family: system-ui; font-size: 16px;"/>
+                <input formControlName="username" pInputText placeholder="Usuario" style="padding: 10px; font-family: system-ui; font-size: 16px;" [autofocus]="true" pAutoFocus />
             </p-inputGroup>
             <p-inputGroup>
                 <p-inputGroupAddon>
@@ -19,7 +19,7 @@
                 </p-inputGroupAddon>
                 <p-password formControlName="pass" [feedback]="false" placeholder="Contraseña" [toggleMask]="true" />
             </p-inputGroup>
-            <error-1 [error]="error" *ngIf="authError"></error-1>
+            <error-1 [error]="error" *ngIf="error?.length"></error-1>
             <div class="horizontal-align" style="padding: 6% 0 0;">
                 <button pButton type="submit" label="Iniciar sesión" [disabled]="!formGroup.valid"></button>
             </div>

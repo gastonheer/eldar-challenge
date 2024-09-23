@@ -20,3 +20,4 @@ export const logInFailed = createAction(
 );
 
 export const logOut = createAction('[Auth component] Log Out!');
+export const clearState = createAction('[Auth component] Clear State!');

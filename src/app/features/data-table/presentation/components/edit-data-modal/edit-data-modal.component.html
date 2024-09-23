@@ -1,4 +1,4 @@
-<p-dialog header="{{modalData.header}}" [modal]="true" [(visible)]="visible" [style]="{ 'border-radius': '10px' }" >
+<p-dialog header="{{modalData.header}}" [modal]="true" [(visible)]="visible" [style]="{ 'border-radius': '10px' }" closeOnEscape="false" >
     <form [formGroup]="formGroup">
         <div class="flex align-items-center gap-3 mb-3">
             <label for="username" class="font-semibold w-6rem">Descripción</label>

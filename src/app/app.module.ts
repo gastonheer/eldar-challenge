@@ -35,6 +35,7 @@ import { ToastModule } from 'primeng/toast';
 import { HomeModule } from './features/home/home.module';
 import { reducers } from './features/app/ngrx/reducers';
 import { metaReducers, rehydrateState } from './features/app/ngrx/metaReducers';
+import { AutoFocusModule } from 'primeng/autofocus';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { metaReducers, rehydrateState } from './features/app/ngrx/metaReducers';
         Error1Module,
         LoginModule,
         HomeModule,
+        AutoFocusModule,
         StoreModule.forRoot(reducers, { metaReducers, initialState: rehydrateState() }),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({

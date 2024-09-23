@@ -8,17 +8,23 @@ import { UserModel } from '../common/models/userModel';
 export class AuthenticationService {
     private users = [
         {
-            username: 'heer',
-            password: 'admin123',
+            username: 'admin',
+            password: 'test123',
             role: 'admin',
             permissions: ['create', 'edit']
         },
         {
-            username: 'monkey1',
-            password: 'goingbananas',
+            username: 'eldar',
+            password: 'test123',
+            role: 'admin',
+            permissions: ['create', 'edit']
+        },
+        {
+            username: 'user',
+            password: 'test123',
             role: 'user',
             permissions: []
-        }
+        },
     ];
     private userActions = [
         {
@@ -27,8 +33,6 @@ export class AuthenticationService {
             action: 'logout'
         },
     ];
-
-    constructor() { }
 
     logIn(username: string, pass: string): Observable<UserModel> {
         const user = this.users.find(u => u.username === username && u.password === pass);

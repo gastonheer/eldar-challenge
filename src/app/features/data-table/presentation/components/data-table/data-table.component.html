@@ -3,11 +3,11 @@
         <div class="col-6-left">
             <p>Registros</p>
         </div>
-        <div class="col-6-right">
+        <div class="col-6-right" *ngIf="currentUser?.isAdmin">
             <p-button label="Agregar nuevo" (onClick)="add()" />
         </div>
     </div>
-    <!-- <ng-container *ngIf="list?.length && !loading; else NoData"> -->
+    <ng-container *ngIf="!error; else NoData">
         <p-table [value]="_list" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="header">
                 <tr>
@@ -41,13 +41,13 @@
             </ng-template>
         </p-table>
         <p-paginator (onPageChange)="onPageChange($event)" [first]="1" [rows]="3" [totalRecords]="list?.length" />
-   <!--  </ng-container> -->
-    <!-- <ng-template #NoData>
-        <ng-container *ngIf="!loading && error">
-            <error-1 [error]="error"></error-1>
-        </ng-container>
-    </ng-template> -->
+    </ng-container>
+    <ng-template #NoData>
+        <error-1 [error]="error"></error-1>
+    </ng-template>
 </p-card>
 <ng-container *ngIf="showModal">
-    <edit-data-modal (closeModal)="closeModal($event)" [modalData]="modalData" [visible]="showModal"></edit-data-modal>
+    <edit-data-modal (closeModal)="closeModal($event)" [modalData]="modalData" [visible]="showModal" (toast)="showToast($event)"></edit-data-modal>
 </ng-container>
+
+<p-toast></p-toast>

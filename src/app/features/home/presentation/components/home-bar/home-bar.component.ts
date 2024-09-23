@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserModel } from '../../../common/models/userModel';
+import { UserModel } from '../../../../common/models/userModel';
 import { Router } from '@angular/router';
-import { NavigationPages } from '../../../common/navigationPages';
-import { AuthenticationService } from '../../../auth/auth.service';
+import { NavigationPages } from '../../../../common/navigationPages';
+import { AuthenticationService } from '../../../../auth/auth.service';
 import { Store } from '@ngrx/store';
-import { AuthActions, AuthReducers } from '../../../auth/ngrx/auth.index';
+import { AuthActions, AuthReducers } from '../../../../auth/ngrx/auth.index';
 
 @Component({
     selector: 'home-bar',
@@ -32,10 +32,9 @@ export class HomeBarComponent implements OnInit {
     }
 
     public clickOption(option: { action: any; }): void {
-        switch (option.action) {
+        switch (option.action) { // Switch tiene que tener más de 2 casos, pero se deja de esta forma por escalabillidad.
             case 'logout':
                 this.optionMenu = false;
-                //this.authService.logOut();
                 this.store.dispatch(AuthActions.logOut());
                 this.router.navigateByUrl(NavigationPages.LOGIN);
                 break;
