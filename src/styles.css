@@ -100,6 +100,18 @@ body {
 
 }
 
+@media (min-width: 1200px) {
+    .main-div {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .main-div {
+        width: 50%;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
