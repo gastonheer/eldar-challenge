@@ -37,7 +37,7 @@ export class DataService {
     return this.http.post(this.apiUrl, body, { headers }).pipe(
       map((res: any) => res),
       catchError((error) => {
-        return throwError(error);  // Lanza el error para que pueda ser manejado
+        return throwError(error);
       })
     );
   }

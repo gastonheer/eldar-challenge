@@ -43,7 +43,6 @@ export class AuthenticationService {
                 role: user.role,
                 permissions: user.permissions
             };
-            localStorage.setItem('loggedUser', JSON.stringify({ ...user }));
             return of(userModel);
         } else {
             return throwError(() => new Error('Usuario o contraseña incorrectos'));
