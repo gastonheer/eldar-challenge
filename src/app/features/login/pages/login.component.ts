@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthActions, AuthReducers } from '../../auth/ngrx/auth.index';
-import { Store } from '@ngrx/store';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { NavigationPages } from '../../common/navigationPages';
 import { AuthSelectors } from '../../auth/ngrx/auth.index';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private authStore: Store<AuthReducers.AuthState>,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -52,6 +55,10 @@ export class LoginComponent implements OnInit {
             user: this.formGroup.controls['username'].value,
             pass: this.formGroup.controls['pass'].value
         }));
+    }
+
+    public signUp() {
+        this.router.navigate([NavigationPages.SIGNUP]);
     }
 
 }

@@ -9,6 +9,7 @@ export interface AuthState {
     loading: boolean;
     error: any;
     isAuthenticated: boolean;
+    users: UserModel[];
 }
 
 export const initialState: AuthState = {
@@ -16,6 +17,7 @@ export const initialState: AuthState = {
     loading: false,
     error: null,
     isAuthenticated: false,
+    users: []
 }
 
 const reducer = createReducer(
@@ -41,19 +43,19 @@ const reducer = createReducer(
         loading: false,
         error: error,
     })),
-    on(AuthActions.logOut, state => ({
+    on(AuthActions.clearState, 
+       AuthActions.logOut, state => ({
         ...state,
         user: null,
         isAuthenticated: false,
         loading: false,
         error: null,
     })),
-    on(AuthActions.clearState, state => ({
+    on(AuthActions.signUp, (state, { user }) => ({
         ...state,
         user: null,
-        isAuthenticated: false,
-        loading: false,
         error: null,
+        users: [/* ...state.users,  */user]
     })),
 );
 

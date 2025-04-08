@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 // APP modules
+import { RegisterModule } from './features/register/presentation/pages/register.module';
 import { Error1Module } from "./features/common/error-component-1/error-1.module";
 import { LoginModule } from './features/login/pages/login.module';
 import { HomeModule } from './features/home/home.module';
@@ -36,6 +37,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
     declarations: [
@@ -44,8 +46,14 @@ import { CardModule } from 'primeng/card';
     imports: [
         BrowserModule,
         HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        Error1Module,
+        LoginModule,
+        HomeModule,
+        RegisterModule,
+        // PrimeNG
         BrowserAnimationsModule,
-        RouterModule.forRoot(routes),
         ButtonModule,
         ProgressSpinnerModule,
         SkeletonModule,
@@ -60,12 +68,10 @@ import { CardModule } from 'primeng/card';
         PaginatorModule,
         DialogModule,
         TableModule,
-        ReactiveFormsModule,
-        FormsModule,
-        Error1Module,
-        LoginModule,
-        HomeModule,
         AutoFocusModule,
+        DropdownModule,
+        //
+        RouterModule.forRoot(routes),
         StoreModule.forRoot(reducers, { metaReducers, initialState: rehydrateState() }),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({

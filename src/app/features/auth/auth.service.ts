@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { UserModel } from '../common/models/userModel';
+import { Store } from '@ngrx/store';
+import { AuthActions, AuthReducers, AuthSelectors } from './ngrx/auth.index';
 
 @Injectable({
     providedIn: 'root'
@@ -33,8 +35,24 @@ export class AuthenticationService {
             action: 'logout'
         },
     ];
+    private roles = [
+        { label: 'admin', value: '1' },
+        { label: 'user', value: '2' }
+    ];
+    private permissions = ['create', 'edit'];
+
+    constructor(
+        private store: Store<AuthReducers.AuthState>,
+    ) { }
 
     logIn(username: string, pass: string): Observable<UserModel> {
+        this.store.select(AuthSelectors.selectFeature).subscribe(users => {
+            if (users?.users?.length != 0) {
+                this.users.concat(userList)
+            } else {
+                userList = this.users;
+            }
+        })
         const user = this.users.find(u => u.username === username && u.password === pass);
         if (user) {
             const userModel: UserModel = {
@@ -51,6 +69,18 @@ export class AuthenticationService {
 
     getUserActions() {
         return this.userActions;
+    }
+
+    getRoles() {
+        return this.roles;
+    }
+
+    getPermissions() {
+        return this.permissions;
+    }
+
+    signUp(user: UserModel) {
+        return this.store.dispatch(AuthActions.signUp({ user: user }));
     }
 
 }

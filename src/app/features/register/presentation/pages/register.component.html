@@ -1,0 +1,30 @@
+<div class="main-div">
+    <p-card styleClass="login-card">
+    
+        <div class="horizontal-align">
+            <p class="title">Registrarse</p>
+        </div>
+        <div class="horizontal-align">
+            <p>Ingrese los datos para registrar el usuario</p>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="signUp()">
+            <p-inputGroup>
+                <input formControlName="username" pInputText placeholder="Usuario"
+                    style="padding: 10px; font-family: system-ui; font-size: 16px;" [autofocus]="true" pAutoFocus />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-password formControlName="pass" [feedback]="false" placeholder="Contraseña" [toggleMask]="true" />
+            </p-inputGroup>
+            <!-- <p-inputGroup>
+                <p-password formControlName="passConfirmation" [feedback]="false" placeholder="Confirmar contraseña" [toggleMask]="true" />
+            </p-inputGroup> -->
+            <p-dropdown [options]="roles" optionLabel="label" placeholder="Seleccione un rol" formControlName="role" />
+            <div class="horizontal-align" style="padding: 6% 0 0;">
+                <button pButton type="submit" label="Registrarse" [disabled]="!formGroup.valid"></button>
+            </div>
+        </form>
+        <div class="horizontal-align" style="margin-top: 20%; margin-bottom: -36px;">
+            <p class="cursor-pointer" style="margin-bottom: 20%;" (click)="goToLogin()">Volver</p>
+        </div>
+    </p-card>
+</div>

@@ -3,3 +3,8 @@ button {
     border: 0;
     border-radius: 5px;
 }
+
+.register {
+    margin-top: 10%;
+    text-decoration: underline;
+}
